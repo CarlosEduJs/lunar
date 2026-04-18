@@ -1,0 +1,3 @@
+{
+  "extends": "@lunar/config/tsconfig.base.json"
+}
