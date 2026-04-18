@@ -1,0 +1,23 @@
+{
+  "name": "@lunar/core",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@scalar/openapi-parser": "^0.8.5"
+  },
+  "devDependencies": {
+    "@lunar/config": "workspace:*",
+    "fast-check": "^3.22.0",
+    "typescript": "^5",
+    "vitest": "^2.1.8"
+  }
+}
