@@ -1,4 +1,4 @@
-import { cn } from "@lunar/ui/lib/utils";
+import { cn } from "@lunar-labs/ui/lib/utils";
 import * as React from "react";
 
 function Card({

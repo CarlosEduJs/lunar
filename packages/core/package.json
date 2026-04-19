@@ -1,5 +1,5 @@
 {
-  "name": "@lunar/core",
+  "name": "@lunar-labs/core",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -15,7 +15,7 @@
     "@scalar/openapi-parser": "^0.8.5"
   },
   "devDependencies": {
-    "@lunar/config": "workspace:*",
+    "@lunar-labs/config": "workspace:*",
     "fast-check": "^3.22.0",
     "typescript": "^5",
     "vitest": "^2.1.8"

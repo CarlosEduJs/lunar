@@ -13,7 +13,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@lunar/ui/*": ["../../packages/ui/src/*"]
+      "@lunar-labs/ui/*": ["../../packages/ui/src/*"]
     }
   }
 }

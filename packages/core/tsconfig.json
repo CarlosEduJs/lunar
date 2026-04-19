@@ -1,5 +1,5 @@
 {
-  "extends": "@lunar/config/tsconfig.base.json",
+  "extends": "@lunar-labs/config/tsconfig.base.json",
   "compilerOptions": {
     "target": "ES2022",
     "module": "ESNext",
