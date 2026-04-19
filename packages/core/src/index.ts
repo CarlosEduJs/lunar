@@ -4,6 +4,7 @@ import { parseOpenAPI } from './parser'
 import { executeRequest } from './request'
 import { StateManager } from './state'
 
+import { LunarError, ErrorCodes } from './error'
 import type { Endpoint, Environment, HistoryEntry, RequestResult } from './types'
 
 export type ExecuteOptions = {
@@ -17,6 +18,7 @@ export type ExecuteOptions = {
 export type LunarConfig = {
   spec: string | object
   env?: Environment
+  maxHistory?: number
 }
 
 export type ExecutionResult = {
@@ -66,12 +68,12 @@ function createHistoryEntry(
 export async function createLunar(config: LunarConfig): Promise<LunarEngine> {
   const parseResult = await parseOpenAPI(config.spec)
   if (!parseResult.success) {
-    throw new Error(`Failed to parse OpenAPI spec: ${parseResult.error}`)
+    throw new LunarError(`Failed to parse OpenAPI spec: ${parseResult.error}`, ErrorCodes.INVALID_SPEC)
   }
 
   const endpoints = normalizeEndpoints(parseResult.spec)
   const envManager = new EnvManager(config.env)
-  const stateManager = new StateManager()
+  const stateManager = new StateManager({ maxHistory: config.maxHistory })
   const baseUrl = parseResult.spec.servers?.[0]?.url ?? ''
 
   return {
@@ -83,7 +85,7 @@ export async function createLunar(config: LunarConfig): Promise<LunarEngine> {
         if (!endpoint) {
           return {
             success: false,
-            error: `Endpoint not found: ${endpointId}`
+            error: new LunarError(`Endpoint not found: ${endpointId}`, ErrorCodes.ENDPOINT_NOT_FOUND).message
           }
         }
 
@@ -141,9 +143,10 @@ export type {
   Environment,
   HistoryEntry,
   HttpMethod,
+  LunarInstance,
   ParseResult,
   RequestBody,
   ResponseObject,
-  RequestConfig,
+  RequestOptions,
   RequestResult
 } from './types'

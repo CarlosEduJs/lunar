@@ -30,14 +30,12 @@ describe('EnvManager properties', () => {
     )
   })
 
-  it('throws when template references undefined variable', () => {
+  it('keeps original string when template references undefined variable', () => {
     fc.assert(
       fc.property(environmentArbitrary(), identifierArbitrary(), (env, name) => {
         if (name in env) return
         const manager = new EnvManager(env)
-        expect(() => manager.resolve(`{{${name}}}`)).toThrow(
-          `Variable not found: ${name}`
-        )
+        expect(manager.resolve(`{{${name}}}`)).toBe(`{{${name}}}`)
       }),
       { numRuns: 100 }
     )

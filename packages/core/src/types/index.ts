@@ -114,7 +114,7 @@ export type Endpoint = {
   responses: Record<string, ResponseObject>
 }
 
-export type RequestConfig = {
+export type RequestOptions = {
   method: HttpMethod
   url: string
   headers?: Record<string, string>
@@ -142,4 +142,23 @@ export type HistoryEntry = {
     body?: unknown
   }
   response: RequestResult
+}
+
+export type LunarInstance = {
+  getEndpoints(): Endpoint[]
+  getEndpoint(id: string): Endpoint | undefined
+  execute(endpointId: string, options?: {
+    pathParams?: Record<string, string>
+    queryParams?: Record<string, string>
+    headers?: Record<string, string>
+    body?: unknown
+    baseUrl?: string
+  }): Promise<{
+    success: boolean
+    response?: RequestResult
+    error?: string
+  }>
+  setEnv(env: Environment): void
+  getEnv(): Environment
+  getHistory(): HistoryEntry[]
 }

@@ -13,10 +13,10 @@ describe('EnvManager', () => {
     expect(env.resolve('/users/{{id}}?token={{token}}')).toBe('/users/42?token=abc')
   })
 
-  it('throws when variable does not exist', () => {
+  it('keeps original string when variable does not exist', () => {
     const env = new EnvManager({})
 
-    expect(() => env.resolve('Hello {{missing}}')).toThrow('Variable not found: missing')
+    expect(env.resolve('Hello {{missing}}')).toBe('Hello {{missing}}')
   })
 
   it('resolves nested objects and arrays', () => {

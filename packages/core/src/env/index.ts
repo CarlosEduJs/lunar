@@ -21,7 +21,7 @@ export class EnvManager {
     return template.replace(/\{\{(\w+)\}\}/g, (_match, varName: string) => {
       const value = this.env[varName]
       if (value === undefined) {
-        throw new Error(`Variable not found: ${varName}`)
+        return `{{${varName}}}`
       }
       return value
     })

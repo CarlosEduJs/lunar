@@ -1,11 +1,28 @@
-import type { RequestConfig, RequestResult } from '../types'
+import { LunarError, ErrorCodes } from '../error'
+import type { RequestOptions, RequestResult } from '../types'
 
 function isPlainObject(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value)
 }
 
+function parseResponseContent(contentType: string | null, rawText: string): unknown {
+  if (!rawText) return null
+
+  const hasJsonMime = contentType?.includes('application/json')
+
+  if (hasJsonMime) {
+    try {
+      return JSON.parse(rawText)
+    } catch {
+      return rawText
+    }
+  }
+
+  return rawText
+}
+
 export async function executeRequest(
-  config: RequestConfig
+  config: RequestOptions
 ): Promise<RequestResult> {
   const start = performance.now()
   const headers = config.headers ?? {}
@@ -28,19 +45,20 @@ export async function executeRequest(
     }
   }
 
-  const response = await fetch(config.url, init)
-  const rawText = await response.text()
-  let data: unknown = rawText
+  let response: Response
 
-  if (rawText) {
-    try {
-      data = JSON.parse(rawText)
-    } catch {
-      data = rawText
-    }
-  } else {
-    data = null
+  try {
+    response = await fetch(config.url, init)
+  } catch (error) {
+    throw new LunarError(
+      error instanceof Error ? error.message : 'Network request failed',
+      ErrorCodes.NETWORK_ERROR
+    )
   }
+
+  const rawText = await response.text()
+  const contentType = response.headers.get('content-type')
+  const data = parseResponseContent(contentType, rawText)
 
   const executionTime = performance.now() - start
   const responseHeaders: Record<string, string> = {}

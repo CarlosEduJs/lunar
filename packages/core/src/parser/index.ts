@@ -1,5 +1,6 @@
 import { dereference, validate } from '@scalar/openapi-parser'
 
+import { LunarError, ErrorCodes } from '../error'
 import type { DereferencedSpec, ParseResult } from '../types'
 
 export async function parseOpenAPI(
@@ -11,7 +12,7 @@ export async function parseOpenAPI(
       const message = validation.errors?.[0]?.message ?? 'Invalid OpenAPI spec'
       return {
         success: false,
-        error: message
+        error: new LunarError(message, ErrorCodes.INVALID_SPEC).message
       }
     }
 
@@ -19,7 +20,7 @@ export async function parseOpenAPI(
     if (!result.specification) {
       return {
         success: false,
-        error: 'OpenAPI parser returned empty specification'
+        error: new LunarError('OpenAPI parser returned empty specification', ErrorCodes.INVALID_SPEC).message
       }
     }
 

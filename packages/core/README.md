@@ -55,6 +55,16 @@ if (result.success) {
 type LunarConfig = {
   spec: string | object
   env?: Record<string, string>
+  maxHistory?: number  // default: 50
+}
+
+type LunarInstance = {
+  getEndpoints(): Endpoint[]
+  getEndpoint(id: string): Endpoint | undefined
+  execute(endpointId: string, options?: ExecuteOptions): Promise<ExecutionResult>
+  setEnv(env: Environment): void
+  getEnv(): Environment
+  getHistory(): HistoryEntry[]
 }
 
 type ExecuteOptions = {
