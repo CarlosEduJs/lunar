@@ -26,15 +26,20 @@ describe('normalizeEndpoints', () => {
     const endpoints = normalizeEndpoints(baseSpec)
 
     expect(endpoints).toHaveLength(2)
-    expect(endpoints[0].id).toBe('GET /users')
-    expect(endpoints[0].summary).toBe('List users')
+    const first = endpoints[0]
+    expect(first).toBeDefined()
+    if (!first) return
+    expect(first.id).toBe('GET /users')
+    expect(first.summary).toBe('List users')
   })
 
   it('includes endpoints without summary', () => {
     const endpoints = normalizeEndpoints(baseSpec)
     const post = endpoints.find((item) => item.id === 'POST /users')
 
-    expect(post?.summary).toBeUndefined()
+    expect(post).toBeDefined()
+    if (!post) return
+    expect(post.summary).toBeUndefined()
   })
 
   it('groups path, query, and header parameters', () => {
@@ -74,6 +79,8 @@ describe('normalizeEndpoints', () => {
     const endpoints = normalizeEndpoints(spec)
     const endpoint = endpoints[0]
 
+    expect(endpoint).toBeDefined()
+    if (!endpoint) return
     expect(endpoint.parameters.path).toHaveLength(1)
     expect(endpoint.parameters.query).toHaveLength(1)
     expect(endpoint.parameters.header).toHaveLength(1)

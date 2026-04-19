@@ -12,8 +12,13 @@ describe('createLunar', () => {
     const lunar = await createLunar({ spec: jsonSpec })
 
     const endpoints = lunar.getEndpoints()
+    const firstEndpoint = endpoints[0]
+
+    expect(firstEndpoint).toBeDefined()
+    if (!firstEndpoint) return
+
     expect(endpoints.length).toBeGreaterThan(0)
-    expect(lunar.getEndpoint(endpoints[0].id)).toBeDefined()
+    expect(lunar.getEndpoint(firstEndpoint.id)).toBeDefined()
   })
 
   it('throws on invalid spec', async () => {
@@ -55,8 +60,11 @@ describe('createLunar', () => {
       }
 
       const history = lunar.getHistory()
+      const entry = history[0]
+
       expect(history).toHaveLength(1)
-      expect(history[0].endpointId).toBe('GET /ping')
+      if (!entry) return
+      expect(entry.endpointId).toBe('GET /ping')
     } finally {
       await server.close()
     }

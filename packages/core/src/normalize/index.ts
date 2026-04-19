@@ -4,6 +4,7 @@ import type {
   HttpMethod,
   Parameter,
   ParameterObject,
+  PathItemObject,
   RequestBody,
   RequestBodyObject,
   ResponseObject
@@ -64,12 +65,13 @@ export function normalizeEndpoints(spec: DereferencedSpec): Endpoint[] {
   const endpoints: Endpoint[] = []
 
   for (const [path, pathItem] of Object.entries(spec.paths ?? {})) {
+    const item = pathItem as PathItemObject
     for (const method of METHODS) {
-      const operation = pathItem[method.toLowerCase() as keyof typeof pathItem]
-      if (!operation) continue
+      const operation = item[method.toLowerCase() as keyof PathItemObject]
+      if (!operation || Array.isArray(operation)) continue
 
       const allParameters = [
-        ...(pathItem.parameters ?? []),
+        ...(item.parameters ?? []),
         ...(operation.parameters ?? [])
       ]
 

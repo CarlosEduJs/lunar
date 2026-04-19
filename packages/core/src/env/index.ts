@@ -18,11 +18,12 @@ export class EnvManager {
   }
 
   resolve(template: string): string {
-    return template.replace(/\{\{(\w+)\}\}/g, (match, varName) => {
-      if (!(varName in this.env)) {
+    return template.replace(/\{\{(\w+)\}\}/g, (_match, varName: string) => {
+      const value = this.env[varName]
+      if (value === undefined) {
         throw new Error(`Variable not found: ${varName}`)
       }
-      return this.env[varName]
+      return value
     })
   }
 

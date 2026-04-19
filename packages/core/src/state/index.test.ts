@@ -21,7 +21,7 @@ describe('StateManager', () => {
         data: { ok: true },
         executionTime: 5
       }
-    }
+    } as const
 
     state.addHistoryEntry(entry)
 
@@ -42,7 +42,7 @@ describe('StateManager', () => {
         data: { ok: true },
         executionTime: 5
       }
-    })
+    } as const)
 
     state.clearHistory()
 
@@ -63,7 +63,7 @@ describe('StateManager', () => {
         data: { ok: true },
         executionTime: 5
       }
-    })
+    } as const)
 
     const history = state.getHistory()
     history.push({
@@ -78,7 +78,7 @@ describe('StateManager', () => {
         data: { ok: true },
         executionTime: 5
       }
-    })
+    } as const)
 
     expect(state.getHistory()).toHaveLength(1)
   })
