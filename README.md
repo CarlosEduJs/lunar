@@ -1,76 +1,68 @@
-# lunar
+# 🌙 Lunar
 
-This project was created with [Better-T-Stack](https://github.com/AmanVarshney01/create-better-t-stack), a modern TypeScript stack that combines React, TanStack Router, and more.
+> A highly customizable, local-first toolkit for building OpenAPI-driven documentation and API clients.
 
-## Features
+Lunar is a modular ecosystem designed to give developers full control over how they explore, document, and interact with APIs.
 
-- **TypeScript** - For type safety and improved developer experience
-- **TanStack Router** - File-based routing with full type safety
-- **TailwindCSS** - Utility-first CSS for rapid UI development
-- **Shared UI package** - shadcn/ui primitives live in `packages/ui`
-- **Nx** - Smart monorepo task orchestration and caching
-- **Oxlint** - Oxlint + Oxfmt (linting & formatting)
+At its core is **Lunar Core**, a lightweight engine for parsing and executing OpenAPI specifications.  
+On top of it, UI and tooling packages can be built freely and customized without constraints.
 
-## Getting Started
+---
 
-First, install the dependencies:
+## Philosophy
 
-```bash
-pnpm install
-```
+Lunar is built around a few core ideas:
 
-Then, run the development server:
+- **Local-first** – no mandatory backend or cloud dependency
+- **Composable** – every layer can be replaced or extended
+- **Developer-owned** – full control over data and UI
+- **Minimal core, flexible ecosystem** – core stays simple, everything else is optional
 
-```bash
-pnpm run dev
-```
+---
 
-Open [http://localhost:5173](http://localhost:5173) in your browser to see the web application.
+## Packages
 
-## UI Customization
+- `@lunar/core` → OpenAPI parsing, normalization, execution engine (development)
+- `@lunar/react` → React bindings (WIP) (todo)
+- `@lunar/ui` → UI components (WIP) (todo)
+- `@lunar/themes` → theme system (WIP) (todo)
 
-React web apps in this stack share shadcn/ui primitives through `packages/ui`.
+---
 
-- Change design tokens and global styles in `packages/ui/src/styles/globals.css`
-- Update shared primitives in `packages/ui/src/components/*`
-- Adjust shadcn aliases or style config in `packages/ui/components.json` and `apps/web/components.json`
+## Core Concept
 
-### Add more shared components
+Lunar transforms OpenAPI specifications into a normalized.
 
-Run this from the project root to add more primitives to the shared UI package:
 
-```bash
-npx shadcn@latest add accordion dialog popover sheet table -c packages/ui
-```
+The core does not depend on any UI framework.
 
-Import shared components like this:
+---
 
-```tsx
-import { Button } from "@lunar/ui/components/button";
-```
+## Why Lunar?
 
-### Add app-specific blocks
+Most API tools are either:
+- tightly coupled to their own UI
+- or too rigid to customize deeply
 
-If you want to add app-specific blocks instead of shared primitives, run the shadcn CLI from `apps/web`.
+Lunar takes the opposite approach:
+> you own the engine, you build the interface.
 
-## Git Hooks and Formatting
+---
 
-- Format and lint fix: `pnpm run check`
+## Status
 
-## Project Structure
+This project is in early development. APIs and packages are unstable and may change frequently.
 
-```
-lunar/
-├── apps/
-│   ├── web/         # Frontend application (React + TanStack Router)
-├── packages/
-│   ├── ui/          # Shared shadcn/ui components and styles
-```
+---
 
-## Available Scripts
+## Development
 
-- `pnpm run dev`: Start all applications in development mode
-- `pnpm run build`: Build all applications
-- `pnpm run dev:web`: Start only the web application
-- `pnpm run check-types`: Check TypeScript types across all apps
-- `pnpm run check`: Run Oxlint and Oxfmt
+This repository uses a monorepo structure (pnpm workspace).
+
+More documentation will be added as the project evolves.
+
+---
+
+## 📄 License
+
+MIT
