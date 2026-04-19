@@ -1,10 +1,12 @@
 {
   "name": "@lunar-labs/core",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
   "exports": {
     ".": "./src/index.ts"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "scripts": {
     "test": "vitest run",

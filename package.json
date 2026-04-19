@@ -11,7 +11,9 @@
     "build": "nx run-many -t build",
     "check-types": "nx run-many -t check-types",
     "dev:web": "nx run-many -t dev --projects=web",
-    "check": "oxlint && oxfmt --write"
+    "check": "oxlint && oxfmt --write",
+    " changeset": "changeset",
+    "release": "changeset version && pnpm publish -r"
   },
   "dependencies": {
     "@lunar-labs/env": "workspace:*",
@@ -19,6 +21,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.31.0",
     "@lunar-labs/config": "workspace:*",
     "nx": "^21.5.2",
     "oxfmt": "^0.26.0",
