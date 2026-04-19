@@ -27,24 +27,56 @@ pnpm add @lunar/core
 ```typescript
 import { createLunar } from '@lunar/core'
 
-// the init with OpenAPI spec
 const lunar = await createLunar({
   spec: './openapi.json',
   env: {
-    baseUrl: 'https://api.example.com',
     apiKey: 'your-api-key'
   }
 })
 
-// list available endpoints
 const endpoints = lunar.getEndpoints()
 
-// execute a request
 const result = await lunar.execute('GET /users/{id}', {
   pathParams: { id: '123' },
-  headers: { 'Authorization': 'Bearer {{apiKey}}' }
+  headers: { Authorization: 'Bearer {{apiKey}}' }
 })
+
+if (result.success) {
+  console.log(result.response.status)
+  console.log(result.response.data)
+} else {
+  console.error(result.error)
+}
 ```
+
+## API
+
+```typescript
+type LunarConfig = {
+  spec: string | object
+  env?: Record<string, string>
+}
+
+type ExecuteOptions = {
+  pathParams?: Record<string, string>
+  queryParams?: Record<string, string>
+  headers?: Record<string, string>
+  body?: unknown
+  baseUrl?: string
+}
+
+type ExecutionResult =
+  | { success: true; response: RequestResult }
+  | { success: false; error: string }
+```
+
+- `createLunar(config)` parses the spec, normalizes endpoints, and returns a headless engine.
+- `getEndpoints()` returns all normalized endpoints.
+- `getEndpoint(id)` returns a single endpoint or `undefined`.
+- `execute(endpointId, options)` runs an HTTP request and stores history.
+- `setEnv(env)` replaces the current environment.
+- `getEnv()` returns a copy of the current environment.
+- `getHistory()` returns the execution history.
 
 ## Development
 
