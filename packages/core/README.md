@@ -1,10 +1,10 @@
-# @lunar/core
+# @lunar-labs/core
 
 Headless OpenAPI engine for the Lunar project.
 
 ## Overview
 
-`@lunar/core` is a TypeScript library that provides essential functionality for working with OpenAPI 3.0 and 3.1 specifications. It handles parsing, normalization, and execution of HTTP requests based on OpenAPI specs, while maintaining environment state and request history.
+`@lunar-labs/core` is a TypeScript library that provides essential functionality for working with OpenAPI 3.0 and 3.1 specifications. It handles parsing, normalization, and execution of HTTP requests based on OpenAPI specs, while maintaining environment state and request history.
 
 ## Features
 
@@ -19,13 +19,13 @@ Headless OpenAPI engine for the Lunar project.
 ## Installation
 
 ```bash
-pnpm add @lunar/core
+pnpm add @lunar-labs/core
 ```
 
 ## Usage
 
 ```typescript
-import { createLunar } from '@lunar/core'
+import { createLunar } from '@lunar-labs/core'
 
 const lunar = await createLunar({
   spec: './openapi.json',

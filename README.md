@@ -22,10 +22,10 @@ Lunar is built around a few core ideas:
 
 ## Packages
 
-- `@lunar/core` → OpenAPI parsing, normalization, execution engine (development)
-- `@lunar/react` → React bindings (WIP) (todo)
-- `@lunar/ui` → UI components (WIP) (todo)
-- `@lunar/themes` → theme system (WIP) (todo)
+- `@lunar-labs/core` → OpenAPI parsing, normalization, execution engine (development)
+- `@lunar-labs/react` → React bindings (WIP) (todo)
+- `@lunar-labs/ui` → UI components (WIP) (todo)
+- `@lunar-labs/themes` → theme system (WIP) (todo)
 
 ---
 

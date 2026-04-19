@@ -12,11 +12,11 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@lunar/ui/components",
-    "utils": "@lunar/ui/lib/utils",
-    "hooks": "@lunar/ui/hooks",
-    "lib": "@lunar/ui/lib",
-    "ui": "@lunar/ui/components"
+    "components": "@lunar-labs/ui/components",
+    "utils": "@lunar-labs/ui/lib/utils",
+    "hooks": "@lunar-labs/ui/hooks",
+    "lib": "@lunar-labs/ui/lib",
+    "ui": "@lunar-labs/ui/components"
   },
   "menuColor": "default",
   "menuAccent": "subtle",

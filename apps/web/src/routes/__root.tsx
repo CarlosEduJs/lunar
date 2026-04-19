@@ -1,4 +1,4 @@
-import { Toaster } from "@lunar/ui/components/sonner";
+import { Toaster } from "@lunar-labs/ui/components/sonner";
 import { HeadContent, Outlet, createRootRouteWithContext } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 

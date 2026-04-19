@@ -14,12 +14,12 @@
     "check": "oxlint && oxfmt --write"
   },
   "dependencies": {
-    "@lunar/env": "workspace:*",
+    "@lunar-labs/env": "workspace:*",
     "dotenv": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@lunar/config": "workspace:*",
+    "@lunar-labs/config": "workspace:*",
     "nx": "^21.5.2",
     "oxfmt": "^0.26.0",
     "oxlint": "^1.41.0",

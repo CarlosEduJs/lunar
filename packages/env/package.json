@@ -1,5 +1,5 @@
 {
-  "name": "@lunar/env",
+  "name": "@lunar-labs/env",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -12,7 +12,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@lunar/config": "workspace:*",
+    "@lunar-labs/config": "workspace:*",
     "typescript": "^5"
   }
 }
